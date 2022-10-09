@@ -2,7 +2,9 @@
 using Fitness.BL.Model;
 using System;
 using System.ComponentModel;
+using System.Globalization;
 using System.Reflection;
+using System.Resources;
 using System.Runtime.Serialization.Formatters.Binary;
 
 namespace Fitness.CMD
@@ -11,9 +13,12 @@ namespace Fitness.CMD
 	{
 		private static void Main(string[] args)
 		{
-			Console.WriteLine("Вас приветсвует приложение Fitness!");
+			var culture = CultureInfo.CreateSpecificCulture("en-us");
+			var resourceManager = new ResourceManager("Fitness.CMD.Languages.Messages", typeof(Program).Assembly);
 
-            Console.WriteLine("Введите имя пользователя");
+			Console.WriteLine(resourceManager.GetString("Hello", culture));
+
+            Console.WriteLine(resourceManager.GetString("EnterName", culture));
 			var name = Console.ReadLine();
 
 
