@@ -6,10 +6,6 @@ namespace Fitness.BL.Controller
 {
     public class EatingController : ControllerBase
     {
-        private const string pathFood = "foods.dat";
-
-        private const string pathEatings = "eatings.dat";
-
         private readonly User user;
 
         public List<Food> Foods { get; }
@@ -22,7 +18,7 @@ namespace Fitness.BL.Controller
 
             Foods = GetAllFoods();
 
-            Eating = GetEating();
+            Eating = GetEating().FirstOrDefault(t => true);
         }
 
         public void Add(Food food, double weight)
@@ -43,10 +39,10 @@ namespace Fitness.BL.Controller
                 
         }
 
-        private Eating GetEating() => Load<Eating>(pathEatings) ?? new Eating(user);
+        private List<Eating> GetEating() => Load<Eating>();
 
-        private List<Food> GetAllFoods() => Load<List<Food>>(pathFood) ?? new List<Food>();
+        private List<Food> GetAllFoods() => Load<Food>();
 
-        private void Save() { Save(pathFood, Foods); Save(pathEatings, Eating); }
+        private void Save() => Save();
     }
 }

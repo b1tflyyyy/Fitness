@@ -5,9 +5,15 @@ namespace Fitness.BL.Model
     [Serializable]
     public class Activity
     {
-        public string Name { get; }
+        public int Id { get; set; }
         
-        public double CloriesPerMinute { get; }
+        public string Name { get; set; }
+       
+        public virtual ICollection<Exercise> Exercises { get; set; }
+        
+        public double CloriesPerMinute { get; set; }
+
+        public Activity() { }
 
         public Activity(string name, double caloriesPerMinute)
         {

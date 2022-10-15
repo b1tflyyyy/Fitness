@@ -9,10 +9,12 @@ namespace Fitness.BL.Model
     public class User
     {
         #region Свойтва
+        public int Id { get; set; }
+
         /// <summary>
         /// Имя.
         /// </summary>
-        public string Name { get; }
+        public string Name { get; set; }
         
         /// <summary>
         /// Пол.
@@ -39,6 +41,8 @@ namespace Fitness.BL.Model
         /// </summary>
         public int Age { get { return DateTime.Now.Year - BirthDate.Year; } }
         #endregion
+
+        public User() { }
 
         /// <summary>
         /// Создать нового пользователя.

@@ -10,8 +10,6 @@ namespace Fitness.BL.Controller
     /// </summary>
     public class UserController : ControllerBase
     {
-        private const string pathUser = "users.dat";
-
         /// <summary>
         /// Пользователь приложения.
         /// </summary>
@@ -48,7 +46,7 @@ namespace Fitness.BL.Controller
         /// Получить сохраненный список пользователей.
         /// </summary>
         /// <returns></returns>
-        private List<User> GetUsersData() => Load<List<User>>(pathUser) ?? new List<User>();
+        private List<User> GetUsersData() => Load<User>() ?? new List<User>();
         
         public void SetNewUserData(string genderName, 
                                    DateTime birthDate, 
@@ -67,6 +65,6 @@ namespace Fitness.BL.Controller
         /// <summary>
         /// Сохранить данные пользователя.
         /// </summary>
-        private void Save() => Save(pathUser, Users);
+        private void Save() => Save(Users);
     }
 }

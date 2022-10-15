@@ -10,10 +10,6 @@ namespace Fitness.BL.Controller
 
         public List<Activity> Activities { get; }
 
-        private const string exercisesPath = "exercise.dat";
-
-        private const string activitiesPath = "activities.dat";
-
         public ExerciseController(User user)
         {
             this.user = user ?? throw new ArgumentNullException(nameof(user));
@@ -25,7 +21,7 @@ namespace Fitness.BL.Controller
 
         private List<Activity>? GetAllActivities()
         {
-            return Load<List<Activity>>(activitiesPath) ?? new List<Activity>();
+            return Load<Activity>() ?? new List<Activity>();
         }
 
         public void Add(Activity activity,
@@ -52,13 +48,13 @@ namespace Fitness.BL.Controller
 
         private List<Exercise>? GetAllExercises()
         {
-            return Load<List<Exercise>>(exercisesPath) ?? new List<Exercise>();
+            return Load<Exercise>() ?? new List<Exercise>();
         }
 
         private void Save()
         {
-            Save(exercisesPath, Exercises);
-            Save(activitiesPath, Activities);
+            Save(Activities);
+            Save(Exercises);
         }
     }
 }
